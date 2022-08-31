@@ -1,4 +1,6 @@
 #![allow(unused_variables, dead_code)]
+
+use std::time::SystemTime;
 mod day01;
 mod day02;
 mod day03;
@@ -55,8 +57,10 @@ fn main() {
         day25::run,
     ];
     for day in days {
+        let start = SystemTime::now();
         if let Some(x) = day(input) {
-            print!("{}\n", x);
+            println!("{}", x);
+            println!("{:?}", SystemTime::now().duration_since(start).unwrap());
             break;
         }
     }
