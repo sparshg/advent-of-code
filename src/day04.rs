@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use itertools::Itertools;
-fn part1(input: &str) -> i32 {
+fn answer(input: &str) -> i32 {
     let a = input
         .lines()
         .map(|x| x.split(&['-', ' ', ':'][..]).collect_vec())
@@ -46,6 +46,7 @@ fn part1(input: &str) -> i32 {
         }
     }
     // part 1
+
     // guard = *sleeps.iter().max_by_key(|x| x.1).unwrap().0;
     // guard
     //     * maxminute
@@ -54,22 +55,19 @@ fn part1(input: &str) -> i32 {
     //         .iter()
     //         .max_by_key(|x| x.1)
     //         .unwrap()
-    //         .0;
+    //         .0
+
+    // part 2
     let part2 = maxminute
         .iter()
-        .map(|(x, y)| (x, y.iter().max_by_key(|x| x.1).unwrap().0))
-        .max_by_key(|x| x.1)
+        .map(|(x, y)| (x, y.iter().max_by_key(|x| x.1).unwrap()))
+        .max_by_key(|x| x.1 .1)
         .unwrap();
-    part2.0 * part2.1
-}
-
-fn part2(input: &str) -> i32 {
-    0
+    part2.0 * part2.1 .0
 }
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
-    return Some(part1(input));
-    // return Some(part2(input));
+    return Some(answer(input));
     None
 }
