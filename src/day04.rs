@@ -68,6 +68,6 @@ fn answer(input: &str) -> i32 {
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
-    return Some(answer(input));
+    // return Some(answer(input));
     None
 }

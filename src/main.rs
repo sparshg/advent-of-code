@@ -58,7 +58,7 @@ fn main() {
     ];
     for day in days {
         let start = SystemTime::now();
-        if let Some(x) = day(input) {
+        if let Some(x) = day(input.trim_end()) {
             println!("{}", x);
             println!("{:?}", SystemTime::now().duration_since(start).unwrap());
             break;
