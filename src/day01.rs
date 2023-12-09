@@ -38,8 +38,7 @@ fn part2(input: &str) -> i32 {
             if let Some(num) = m
                 .get(&line.get(i..i + 3).unwrap_or_default())
                 .or(m.get(&line.get(i..i + 4).unwrap_or_default()))
-                .or(m.get(&line.get(i..i + 5).unwrap_or_default()))
-                .map(|&x| x)
+                .or(m.get(&line.get(i..i + 5).unwrap_or_default())).copied()
                 .or(c.to_digit(10))
             {
                 if first.is_none() {

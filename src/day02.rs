@@ -25,13 +25,13 @@ fn part2(input: &str) -> i32 {
                 let (n, c) = x.trim().split_once(' ').unwrap();
                 colors.insert(c, n.parse::<i32>().unwrap().max(colors[c]));
             });
-        sum + colors.values().fold(1, |p, x| p * x)
+        sum + colors.values().product::<i32>()
     })
 }
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
