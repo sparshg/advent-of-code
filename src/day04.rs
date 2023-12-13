@@ -1,4 +1,4 @@
-use itertools::{enumerate, Itertools};
+use itertools::{Itertools};
 
 fn part1(input: &str) -> i32 {
     input.lines().fold(0, |acc, line| {
@@ -13,7 +13,7 @@ fn part1(input: &str) -> i32 {
         let matches = b
             .iter()
             .fold(0, |matches, c| matches + if a.contains(c) { 1 } else { 0 });
-        acc + if matches > 0 { 1 << matches - 1 } else { 0 }
+        acc + if matches > 0 { 1 << (matches - 1) } else { 0 }
     })
 }
 
@@ -46,6 +46,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
