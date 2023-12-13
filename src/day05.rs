@@ -42,7 +42,7 @@ fn part1(input: &str) -> i32 {
 }
 
 fn part2(input: &str) -> i32 {
-    let (mut seeds, maps) = get_seeds_and_maps(input);
+    let (seeds, maps) = get_seeds_and_maps(input);
     // maps[0].iter().find(|m| (m.1..m.1 + m.2).contains(seeds[0]))
     0
 }
@@ -50,6 +50,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
