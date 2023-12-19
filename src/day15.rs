@@ -14,8 +14,7 @@ fn part1(input: &str) -> i32 {
 fn part2(input: &str) -> i32 {
     let mut boxes: Vec<VecDeque<(&str, i32)>> = vec![VecDeque::new(); 256];
     for instr in input.split(',') {
-        if instr.ends_with('-') {
-            let label = &instr[..instr.len() - 1];
+        if let Some(label) = instr.strip_suffix('-') {
             boxes[hash(label) as usize].retain(|&(x, _)| x != label);
         } else {
             let (label, num) = instr.split_once('=').unwrap();
@@ -41,6 +40,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }

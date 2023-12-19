@@ -1,6 +1,6 @@
 use itertools::Itertools;
 
-fn process_input<'a>(input: &'a str) -> impl Iterator<Item = (&'a str, i32)> {
+fn process_input(input: &str) -> impl Iterator<Item = (&'_ str, i32)> {
     input.lines().map(|x| {
         x.split_once(' ')
             .map(|(x, y)| (x, y.parse::<i32>().unwrap()))
@@ -60,6 +60,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
