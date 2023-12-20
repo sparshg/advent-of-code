@@ -1,5 +1,5 @@
-use core::time;
-use std::{collections::HashSet, thread};
+
+use std::{collections::HashSet};
 
 use itertools::Itertools;
 
@@ -80,7 +80,7 @@ fn part1(input: &str) -> i32 {
         .collect_vec();
 
     for dir in &mut [Dir::Up, Dir::Down, Dir::Left, Dir::Right] {
-        let mut pos = start.clone();
+        let mut pos = start;
         dir.add(&mut pos);
         let mut set = HashSet::from([start]);
         let mut steps = 1;
@@ -111,7 +111,7 @@ fn part2(input: &str) -> i32 {
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
-    return Some(part1(input));
+    // return Some(part1(input));
     // return Some(part2(input));
     None
 }
