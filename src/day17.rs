@@ -12,7 +12,7 @@ fn solve(input: &str, part2: bool) -> i32 {
         .collect_vec();
     let mut vis = HashSet::new();
     let mut heap = BinaryHeap::new();
-    // min heap, total, i, j, path remaning, direction as following
+    // min heap, total, i, j, path remaining, direction as following
     // - 0 -
     // 1 * 3
     // - 2 -
