@@ -88,7 +88,7 @@ fn part2(input: &str) -> i32 {
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
-    return Some(part1(input));
+    // return Some(part1(input));
     // return Some(part2(input));
     None
 }
