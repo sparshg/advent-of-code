@@ -1,27 +1,21 @@
-use std::i32;
+use itertools::{sorted, Itertools};
 
-use itertools::Itertools;
-
-fn input_vec(input: &str) -> (Vec<i32>, Vec<i32>) {
+fn input_vec(input: &str) -> [Vec<i32>; 2] {
     input
         .lines()
         .map(|line| line.split_once("   ").unwrap())
         .map(|(a, b)| (a.parse::<i32>().unwrap(), b.parse::<i32>().unwrap()))
         .unzip()
+        .into()
 }
 
 fn part1(input: &str) -> i32 {
-    let (a, b) = input_vec(input);
-
-    a.into_iter()
-        .sorted()
-        .zip(b.into_iter().sorted())
-        .map(|(a, b)| (a - b).abs())
-        .sum()
+    let [a, b] = input_vec(input).map(sorted);
+    a.zip(b).map(|(a, b)| (a - b).abs()).sum()
 }
 
 fn part2(input: &str) -> i32 {
-    let (a, b) = input_vec(input);
+    let [a, b] = input_vec(input);
     let b = b.into_iter().counts();
 
     a.into_iter()
