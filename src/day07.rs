@@ -1,20 +1,13 @@
-use std::collections::HashSet;
-
-use itertools::Itertools;
-
 fn solve(input: &str, part2: bool) -> u64 {
     input
         .lines()
         .filter_map(|line| {
             let (target, nums) = line.split_once(": ").unwrap();
             let target = target.parse::<u64>().unwrap();
-            let nums = nums
-                .split_whitespace()
-                .map(|x| x.parse::<u64>().unwrap())
-                .collect_vec();
-            let mut seen = HashSet::from([nums[0]]);
-            for &num in nums[1..].iter() {
-                let mut new_seen = HashSet::new();
+            let mut nums = nums.split_whitespace().map(|x| x.parse::<u64>().unwrap());
+            let mut seen = Vec::from([nums.next().unwrap()]);
+            for num in nums {
+                let mut new_seen = Vec::new();
                 for n in seen.into_iter() {
                     let mut ops = vec![n + num, n * num];
                     if part2 {
@@ -24,7 +17,7 @@ fn solve(input: &str, part2: bool) -> u64 {
                 }
                 seen = new_seen;
             }
-            seen.contains(&target).then(|| target)
+            seen.contains(&target).then_some(target)
         })
         .sum::<u64>()
 }
@@ -42,6 +35,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
