@@ -24,7 +24,6 @@ fn mark_groups(
 fn mark_perimeter(groups: &Vec<Vec<i32>>) -> Vec<i32> {
     let mut perimeter = vec![0; *groups.iter().flatten().max().unwrap() as usize + 1];
     for (i, j) in (0..groups.len())
-        .into_iter()
         .cartesian_product(0..groups[0].len())
     {
         if j + 1 < groups[0].len() && groups[i][j + 1] != groups[i][j] {
@@ -55,7 +54,6 @@ fn part1(input: &str) -> i32 {
     let mut groups = vec![vec![-1; grid[0].len()]; grid.len()];
     let mut group = 0;
     for (i, j) in (0..grid.len())
-        .into_iter()
         .cartesian_product(0..grid[0].len())
     {
         if groups[i][j] == -1 {
@@ -80,7 +78,7 @@ fn part2(input: &str) -> i32 {
 
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
-    return Some(part1(input));
+    // return Some(part1(input));
     // return Some(part2(input));
     None
 }

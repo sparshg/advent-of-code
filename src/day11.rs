@@ -22,9 +22,9 @@ fn part1(input: &str) -> i32 {
             }
         }
         nums.extend(ext);
-        dbg!(i, nums.iter().count());
+        dbg!(i, nums.len());
     }
-    nums.iter().count() as i32
+    nums.len() as i32
 }
 
 fn part2(input: &str) -> i32 {
