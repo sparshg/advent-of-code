@@ -26,7 +26,7 @@ fn part1(input: &str) -> i32 {
         .product::<usize>() as i32
 }
 
-fn entropy(grid: &Vec<Vec<bool>>) -> f32 {
+fn entropy(grid: &[Vec<bool>]) -> f32 {
     (0..10)
         .cartesian_product(0..10)
         .map(|(i, j)| {
@@ -44,7 +44,7 @@ fn entropy(grid: &Vec<Vec<bool>>) -> f32 {
         .sum()
 }
 
-fn print_grid(grid: &Vec<Vec<bool>>) {
+fn print_grid(grid: &[Vec<bool>]) {
     for row in grid.iter() {
         for &cell in row.iter() {
             print!("{}", if cell { '#' } else { '.' });
@@ -76,6 +76,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }

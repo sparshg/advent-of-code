@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 use itertools::Itertools;
 
-fn check_loop(mut x: i32, mut y: i32, dir: (i32, i32, char), grid: &Vec<Vec<char>>) -> bool {
+fn check_loop(mut x: i32, mut y: i32, dir: (i32, i32, char), grid: &[Vec<char>]) -> bool {
     let mut prev = grid[x as usize][y as usize];
     while let Some(c) = grid.get(x as usize).and_then(|row| row.get(y as usize)) {
         if c == &dir.2 || c == &'#' && transform_dir(dir).2 == prev {
