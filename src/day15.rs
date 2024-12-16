@@ -57,6 +57,7 @@ fn get_empty_space(
     };
     Some((nx, ny))
 }
+
 fn get_gps(grid: Vec<Vec<char>>, find: char) -> i32 {
     (0..grid.len())
         .cartesian_product(0..grid[0].len())
