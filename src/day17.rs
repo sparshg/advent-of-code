@@ -119,23 +119,35 @@ fn part1(input: &str) -> i32 {
     0
 }
 
-fn part2(input: &str) -> i32 {
-    let program = input
-        .split_once("\n\n")
-        .unwrap()
-        .1
-        .split_once(' ')
-        .unwrap()
-        .1;
-    for i in 219000000870856.. {
-        let mut computer = Computer::new(input);
-        computer.registers[0] = i;
-        let output = computer.run();
-        println!("{} {} {}", i, output, program);
-        if output == program {
-            break;
+fn search(reg: u64, program: &[u64], t: i32) -> Option<u64> {
+    if t < 0 {
+        return Some(reg);
+    }
+    for i in 0..8 {
+        let reg = reg * 8 + i;
+        if (i ^ 5 ^ (reg >> (i ^ 1))) % 8 == program[t as usize] {
+            let found = search(reg, program, t - 1);
+            if found.is_some() {
+                return found;
+            }
         }
     }
+    None
+}
+
+fn part2(input: &str) -> i32 {
+    let program = input
+        .split_once("Program: ")
+        .unwrap()
+        .1
+        .split(',')
+        .map(|x| x.parse::<u64>().unwrap())
+        .collect_vec();
+
+    let mut computer = Computer::new(input);
+    let a = search(0, &program, program.len() as i32 - 1).unwrap();
+    computer.registers[0] = a;
+    println!("{}", a);
     0
 }
 
