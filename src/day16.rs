@@ -10,12 +10,12 @@ fn find(grid: &[Vec<char>], c: char) -> (usize, usize) {
 }
 
 fn dijkstra(grid: &[Vec<char>], sx: usize, sy: usize, ex: usize, ey: usize) -> (i32, i32) {
-    // part 1
     let directions = [(0, 1), (0, -1), (1, 0), (-1, 0)];
-    let mut dist = vec![vec![[std::i32::MAX; 4]; grid[0].len()]; grid.len()];
+    let mut dist = vec![vec![[MAX; 4]; grid[0].len()]; grid.len()];
     let mut queue = BinaryHeap::from([(0, sx, sy, 0)]);
     dist[sx][sy] = [0; 4];
     let mut reached = 0;
+
     while let Some((d, x, y, dir)) = queue.pop() {
         if -d > dist[x][y][dir] {
             continue;
@@ -24,8 +24,7 @@ fn dijkstra(grid: &[Vec<char>], sx: usize, sy: usize, ex: usize, ey: usize) -> (
             reached = dir;
             break;
         }
-
-        for (i, (dx, dy)) in directions.into_iter().enumerate() {
+        for (i, (dx, dy)) in directions.iter().enumerate() {
             let (nx, ny) = ((x as i32 + dx) as usize, (y as i32 + dy) as usize);
             if !((0..grid.len()).contains(&nx) && (0..grid[0].len()).contains(&ny))
                 || grid[nx][ny] == '#'
@@ -47,6 +46,7 @@ fn dijkstra(grid: &[Vec<char>], sx: usize, sy: usize, ex: usize, ey: usize) -> (
         reached,
     )];
     visited[ex][ey] = true;
+
     while let Some((x, y, dir)) = stack.pop() {
         visited[x as usize][y as usize] = true;
         if (x, y) == (sx as i32, sy as i32) {
@@ -61,8 +61,7 @@ fn dijkstra(grid: &[Vec<char>], sx: usize, sy: usize, ex: usize, ey: usize) -> (
             })
         {
             let (dx, dy) = directions[dir];
-            let (nx, ny) = (x - dx, y - dy);
-            stack.push((nx, ny, dir));
+            stack.push((x - dx, y - dy, dir));
         }
     }
 
@@ -93,6 +92,6 @@ fn part2(input: &str) -> i32 {
 #[allow(unreachable_code)]
 pub fn run(input: &str) -> Option<i32> {
     // return Some(part1(input));
-    return Some(part2(input));
+    // return Some(part2(input));
     None
 }
