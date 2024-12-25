@@ -4,9 +4,7 @@ use itertools::Itertools;
 
 fn dijkstra(grid: &[Vec<bool>]) -> Option<i32> {
     let mut dist = vec![vec![i32::MAX; grid[0].len()]; grid.len()];
-    let mut visited = vec![vec![false; grid[0].len()]; grid.len()];
     let mut queue = BinaryHeap::from(vec![(0, (0, 0))]);
-    visited[0][0] = true;
     while let Some((d, (x, y))) = queue.pop() {
         if (x, y) == (grid.len() - 1, grid[0].len() - 1) {
             return Some(-d);
@@ -16,11 +14,9 @@ fn dijkstra(grid: &[Vec<bool>]) -> Option<i32> {
             if (0..grid.len()).contains(&nx)
                 && (0..grid[0].len()).contains(&ny)
                 && grid[nx][ny]
-                && !visited[nx][ny]
                 && dist[nx][ny] > -d + 1
             {
-                visited[nx][ny] = true;
-                dist[x][y] = -d + 1;
+                dist[nx][ny] = -d + 1;
                 queue.push((d - 1, (nx, ny)));
             }
         }
